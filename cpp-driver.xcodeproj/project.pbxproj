@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3705E4C01FDADB2F006EEF43 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3705E4BF1FDADB2F006EEF43 /* utils.swift */; };
+		37254EB21FE5C21B002AA834 /* session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EAA1FE5C21A002AA834 /* session.swift */; };
+		37254EB31FE5C21B002AA834 /* cluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EAB1FE5C21A002AA834 /* cluster.swift */; };
+		37254EB41FE5C21B002AA834 /* resultset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EAC1FE5C21A002AA834 /* resultset.swift */; };
+		37254EB51FE5C21B002AA834 /* statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EAD1FE5C21A002AA834 /* statement.swift */; };
+		37254EB61FE5C21B002AA834 /* listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EAE1FE5C21B002AA834 /* listener.swift */; };
+		37254EB71FE5C21B002AA834 /* driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EAF1FE5C21B002AA834 /* driver.swift */; };
+		37254EB81FE5C21B002AA834 /* authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EB01FE5C21B002AA834 /* authenticator.swift */; };
+		37254EB91FE5C21B002AA834 /* future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254EB11FE5C21B002AA834 /* future.swift */; };
 		372885001F9625610016AB00 /* simple.c in Sources */ = {isa = PBXBuildFile; fileRef = 372884FF1F9625610016AB00 /* simple.c */; };
 		372885141F962B780016AB00 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 372885131F962B780016AB00 /* auth.c */; };
 		372885211F9645630016AB00 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = 372885201F9645630016AB00 /* async.c */; };
@@ -30,9 +37,7 @@
 		375DA3021F97420800AE9FF8 /* udt.c in Sources */ = {isa = PBXBuildFile; fileRef = 375DA3011F97420800AE9FF8 /* udt.c */; };
 		375DA30F1F97443600AE9FF8 /* uuids.c in Sources */ = {isa = PBXBuildFile; fileRef = 375DA30E1F97443600AE9FF8 /* uuids.c */; };
 		375DA3181F98F26600AE9FF8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375DA3171F98F26600AE9FF8 /* main.swift */; };
-		375DA31E1F9A4BD600AE9FF8 /* auth.m.txt in Sources */ = {isa = PBXBuildFile; fileRef = 375DA31D1F9A4BD600AE9FF8 /* auth.m.txt */; };
 		377C2FAA1F9B23DF00145B45 /* simple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C2FA91F9B23DF00145B45 /* simple.swift */; };
-		377C2FAC1F9B2CFC00145B45 /* driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C2FAB1F9B2CFC00145B45 /* driver.swift */; };
 		377C2FAE1F9B760000145B45 /* basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C2FAD1F9B760000145B45 /* basic.swift */; };
 		377C2FB51F9FAF0200145B45 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C2FB41F9FAF0200145B45 /* auth.swift */; };
 		377C2FB81FA06FD600145B45 /* batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C2FB71FA06FD600145B45 /* batch.swift */; };
@@ -248,7 +253,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3705E4BF1FDADB2F006EEF43 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		37254EAA1FE5C21A002AA834 /* session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = session.swift; sourceTree = "<group>"; };
+		37254EAB1FE5C21A002AA834 /* cluster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cluster.swift; sourceTree = "<group>"; };
+		37254EAC1FE5C21A002AA834 /* resultset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultset.swift; sourceTree = "<group>"; };
+		37254EAD1FE5C21A002AA834 /* statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statement.swift; sourceTree = "<group>"; };
+		37254EAE1FE5C21B002AA834 /* listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listener.swift; sourceTree = "<group>"; };
+		37254EAF1FE5C21B002AA834 /* driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driver.swift; sourceTree = "<group>"; };
+		37254EB01FE5C21B002AA834 /* authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticator.swift; sourceTree = "<group>"; };
+		37254EB11FE5C21B002AA834 /* future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = future.swift; sourceTree = "<group>"; };
 		372884D01F9623710016AB00 /* cpp-driver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-driver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		372884FD1F9625610016AB00 /* simple */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = simple; sourceTree = BUILT_PRODUCTS_DIR; };
 		372884FF1F9625610016AB00 /* simple.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = simple.c; sourceTree = "<group>"; };
@@ -297,12 +309,9 @@
 		375DA30E1F97443600AE9FF8 /* uuids.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uuids.c; sourceTree = "<group>"; };
 		375DA3161F98F26500AE9FF8 /* cpp-driver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cpp-driver-Bridging-Header.h"; sourceTree = "<group>"; };
 		375DA3171F98F26600AE9FF8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		375DA31D1F9A4BD600AE9FF8 /* auth.m.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = auth.m.txt; sourceTree = "<group>"; };
 		377C2FA91F9B23DF00145B45 /* simple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simple.swift; sourceTree = "<group>"; };
-		377C2FAB1F9B2CFC00145B45 /* driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driver.swift; sourceTree = "<group>"; };
 		377C2FAD1F9B760000145B45 /* basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = basic.swift; sourceTree = "<group>"; };
 		377C2FB41F9FAF0200145B45 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
-		377C2FB61F9FB70100145B45 /* auth.h.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = auth.h.txt; sourceTree = "<group>"; };
 		377C2FB71FA06FD600145B45 /* batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = batch.swift; sourceTree = "<group>"; };
 		377C2FB91FA0B51600145B45 /* bind_by_name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bind_by_name.swift; sourceTree = "<group>"; };
 		377C2FBB1FA0CEA500145B45 /* collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collections.swift; sourceTree = "<group>"; };
@@ -537,14 +546,18 @@
 			children = (
 				375DA3161F98F26500AE9FF8 /* cpp-driver-Bridging-Header.h */,
 				375DA3171F98F26600AE9FF8 /* main.swift */,
-				3705E4BF1FDADB2F006EEF43 /* utils.swift */,
+				37254EAF1FE5C21B002AA834 /* driver.swift */,
+				37254EB01FE5C21B002AA834 /* authenticator.swift */,
+				37254EAB1FE5C21A002AA834 /* cluster.swift */,
+				37254EB11FE5C21B002AA834 /* future.swift */,
+				37254EAC1FE5C21A002AA834 /* resultset.swift */,
+				37254EAD1FE5C21A002AA834 /* statement.swift */,
+				37254EAA1FE5C21A002AA834 /* session.swift */,
+				37254EAE1FE5C21B002AA834 /* listener.swift */,
 				37CDA55D1FD0459A0091B914 /* driver.h */,
 				37CDA55E1FD0459A0091B914 /* driver.m */,
-				377C2FAB1F9B2CFC00145B45 /* driver.swift */,
 				377C2FA91F9B23DF00145B45 /* simple.swift */,
 				377C2FAD1F9B760000145B45 /* basic.swift */,
-				377C2FB61F9FB70100145B45 /* auth.h.txt */,
-				375DA31D1F9A4BD600AE9FF8 /* auth.m.txt */,
 				377C2FB41F9FAF0200145B45 /* auth.swift */,
 				377C2FB71FA06FD600145B45 /* batch.swift */,
 				377C2FB91FA0B51600145B45 /* bind_by_name.swift */,
@@ -1257,21 +1270,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				37CDA5521FC087A50091B914 /* uuids.swift in Sources */,
+				37254EB81FE5C21B002AA834 /* authenticator.swift in Sources */,
+				37254EB71FE5C21B002AA834 /* driver.swift in Sources */,
+				37254EB91FE5C21B002AA834 /* future.swift in Sources */,
 				377C2FB81FA06FD600145B45 /* batch.swift in Sources */,
+				37254EB61FE5C21B002AA834 /* listener.swift in Sources */,
 				37CDA5541FC2D4170091B914 /* date_time.swift in Sources */,
 				377C2FAE1F9B760000145B45 /* basic.swift in Sources */,
 				377C2FB51F9FAF0200145B45 /* auth.swift in Sources */,
 				37CDA5561FC314370091B914 /* decimal.swift in Sources */,
 				375DA3181F98F26600AE9FF8 /* main.swift in Sources */,
-				3705E4C01FDADB2F006EEF43 /* utils.swift in Sources */,
 				377C2FBE1FA1E06F00145B45 /* callbacks.swift in Sources */,
 				377C2FBC1FA0CEA500145B45 /* collections.swift in Sources */,
+				37254EB51FE5C21B002AA834 /* statement.swift in Sources */,
+				37254EB31FE5C21B002AA834 /* cluster.swift in Sources */,
 				377C2FBA1FA0B51600145B45 /* bind_by_name.swift in Sources */,
 				37CDA55F1FD0459A0091B914 /* driver.m in Sources */,
 				377C2FC41FA7BF5F00145B45 /* maps.swift in Sources */,
-				377C2FAC1F9B2CFC00145B45 /* driver.swift in Sources */,
+				37254EB41FE5C21B002AA834 /* resultset.swift in Sources */,
+				37254EB21FE5C21B002AA834 /* session.swift in Sources */,
 				377C2FAA1F9B23DF00145B45 /* simple.swift in Sources */,
-				375DA31E1F9A4BD600AE9FF8 /* auth.m.txt in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1691,7 +1709,7 @@
 		};
 		372885551F965BF40016AB00 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3728854B1F965B9E0016AB00 /* release.xcconfig */;
+			baseConfigurationReference = 372885491F965B9E0016AB00 /* debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
