@@ -14,7 +14,7 @@ let KEY = "test"
 fileprivate
 func getSession() -> Session {
     let session = Session()
-    BasicCluster("127.0.0.1").connect(session).check()
+    _ = Cluster().setContactPoints("127.0.0.1").setCredentials().connect(session).check()
     return session
 }
 
@@ -27,7 +27,7 @@ func create_keyspace(session: Session) -> () {
     """
     let future = session.execute(SimpleStatement(query))
     print("...create_keyspace")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func create_table(session: Session) -> () {
@@ -38,7 +38,7 @@ func create_table(session: Session) -> () {
     """
     let future = session.execute(SimpleStatement(query))
     print("...create_table")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func insert_into(session: Session, key: String, time: UUID, entry: String) -> () {
@@ -50,7 +50,7 @@ func insert_into(session: Session, key: String, time: UUID, entry: String) -> ()
                                     entry)
     let future = session.execute(statement)
     print("...insert_into_log")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func select_from(session: Session, key: String) -> ResultSet {
@@ -61,7 +61,7 @@ func select_from(session: Session, key: String) -> ResultSet {
     let statement = SimpleStatement(query, map: map)
     let rs = ResultSet(session.execute(statement))
     print("...select_from_log")
-    rs.check()
+    _ = rs.check()
     return rs
 }
 
@@ -69,7 +69,7 @@ func uuids() {
     print("uuids...")
     let session = getSession()
     create_table(session: session)
-    let gen = Generator()
+    let gen = UuidGenerator()
     var uuid: UUID
     uuid = gen.time_uuid()
     //print("*** uuid=\(uuid) \(string(uuid: uuid))")

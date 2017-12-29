@@ -9,13 +9,12 @@
 fileprivate
 func getSession() -> Session {
     let session = Session()
-    BasicCluster("127.0.0.1,127.0.0.2,127.0.0.3").connect(session).check()
+    _ = Cluster().setContactPoints("127.0.0.1,127.0.0.2,127.0.0.3").setCredentials().connect(session).check()
     return session
 }
 
 func auth() {
     print("auth...")
-
     //let cluster = BasicCluster("127.0.0.1,127.0.0.2,127.0.0.3"/*,username:"cassandra",password:"cassandra"*/)
     //print("cluster:\(cluster)")
     /*let credentials = ["cassandra", "cassandra"]

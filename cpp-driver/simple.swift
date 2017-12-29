@@ -9,7 +9,7 @@
 fileprivate
 func getSession() -> Session {
     let session = Session()
-    BasicCluster("127.0.0.1").connect(session).check()
+    _ = Cluster().setContactPoints("127.0.0.1").setCredentials().connect(session).check()
     return session
 }
 
@@ -17,7 +17,7 @@ fileprivate
 func select_from(session: Session) -> ResultSet {
     let query = "SELECT release_version FROM system.local"
     let rs = ResultSet(session.execute(SimpleStatement(query)))
-    rs.check()
+    _ = rs.check()
     return rs
 }
 

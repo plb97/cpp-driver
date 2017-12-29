@@ -12,7 +12,7 @@ let KEY = "test"
 fileprivate
 func getSession() -> Session {
     let session = Session()
-    BasicCluster("127.0.0.1").connect(session).check()
+    _ = Cluster().setContactPoints("127.0.0.1").setCredentials().connect(session).check()
     return session
 }
 
@@ -25,7 +25,7 @@ func create_keyspace(session: Session) -> () {
     """
     let future = session.execute(SimpleStatement(query))
     print("...create_keyspace")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func create_table(session: Session) -> () {
@@ -37,7 +37,7 @@ func create_table(session: Session) -> () {
     """
     let future = session.execute(SimpleStatement(query))
     print("...create_table")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func insert_into(_ session: Session,_ key: String,_ items: Set<String>) -> () {
@@ -48,7 +48,7 @@ func insert_into(_ session: Session,_ key: String,_ items: Set<String>) -> () {
                                     items)
     let future = session.execute(statement)
     print("...insert_into_collections")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func select_from(_ session: Session,_ key: String) -> ResultSet {
@@ -57,7 +57,7 @@ func select_from(_ session: Session,_ key: String) -> ResultSet {
     let statement = SimpleStatement(query,key)
     let rs = ResultSet(session.execute(statement))
     print("...select_from_collections")
-    rs.check()
+    _ = rs.check()
     return rs
 }
 

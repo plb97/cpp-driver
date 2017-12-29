@@ -79,7 +79,7 @@ func on_create_table(_ future_: FutureBase?, _ data_: UnsafeMutableRawPointer?) 
         INSERT INTO examples.callbacks (key, value)
         VALUES (?, ?);
         """
-        let gen = Generator()
+        let gen = UuidGenerator()
         let key = gen.time_uuid()
         let value = gen.timestamp(key)
         print("$$$ on_create_table: INSERT INTO key=\(key) value=\(value)")
@@ -134,7 +134,7 @@ func callbacks() {
         data_.deinitialize()
         data_.deallocate(capacity: 1)
     }
-    if Cluster("127.0.0.1").connect(session, listener: Listener(on_session_connect,data_)).check(checker: checker) {
+    if Cluster().setContactPoints("127.0.0.1").setCredentials().connect(session, listener: Listener(on_session_connect,data_)).check(checker: checker) {
         print("waiting")
         semaphore_ = DispatchSemaphore(value: 0)
         semaphore_!.wait()

@@ -180,8 +180,8 @@ int main(int argc, char* argv[]) {
                   INITCOND(0, 0);");
 
     print_table(session, "examples", "schema_meta");
-    print_function(session, "examples", "avg_state", "tuple<int,bigint>,int");
-    print_function(session, "examples", "avg_final", "tuple<int,bigint>");
+    print_function(session, "examples", "avg_state", "frozen<tuple<int, bigint>>,int");
+    print_function(session, "examples", "avg_final", "frozen<tuple<int, bigint>>");
     print_aggregate(session, "examples", "average", "int");
 
     /* Close the session */

@@ -9,7 +9,7 @@
 fileprivate
 func getSession() -> Session {
     let session = Session()
-    BasicCluster("127.0.0.1").connect(session).check()
+    _ = Cluster().setContactPoints("127.0.0.1").setCredentials().connect(session).check()
     return session
 }
 
@@ -22,7 +22,7 @@ func create_keyspace(session: Session) -> () {
     """
     let future = session.execute(SimpleStatement(query))
     print("...create_keyspace")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func create_table(session: Session) -> () {
@@ -34,13 +34,13 @@ func create_table(session: Session) -> () {
     """
     let future = session.execute(SimpleStatement(query))
     print("...create_table")
-    future.check()
+    _ = future.check()
 }
 fileprivate
 func prepare_statement(session: Session) -> PreparedStatement {
     let query = "INSERT INTO examples.pairs (key, value) VALUES (?, ?);"
     let prepared = session.prepare(query)
-    prepared.check()
+    _ = prepared.check()
     return prepared
 }
 fileprivate
@@ -55,7 +55,7 @@ func insert_into(session: Session,_ pairs: [[String]]) -> () {
     batch.add(SimpleStatement("INSERT INTO examples.pairs (key, value) VALUES (?, ?);","d","4"))
     let future = session.execute(batch: batch)
     print("insert_into...")
-    future.check()
+    _ = future.check()
 }
 
 func batch() {

@@ -6,9 +6,10 @@
 //  Copyright © 2017 PLB. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 
 print("*** start")
+print("byte order \(NSHostByteOrder()) little=\(NS_LittleEndian) big=\(NS_BigEndian)")
 //simple()
 //basic()
 auth()
