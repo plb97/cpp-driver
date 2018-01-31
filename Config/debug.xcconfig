@@ -1,0 +1,8 @@
+//
+//  debug.xcconfig
+//  simple
+//
+//  Created by Philippe on 17/10/2017.
+//  Copyright © 2017 PLB. All rights reserved.
+//
+#include "common.xcconfig"
