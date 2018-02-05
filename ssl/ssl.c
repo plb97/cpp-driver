@@ -29,15 +29,15 @@
 #include <openssl/ssl.h>
 #include <cassandra.h>
 
-int load_trusted_cert_file(const char* file, CassSsl* ssl) {
+int load_trusted_cert_file(const char* cert_file, CassSsl* ssl) {
   CassError rc;
   char* cert;
   long cert_size;
   size_t bytes_read;
 
-  FILE *in = fopen(file, "rb");
+  FILE *in = fopen(cert_file, "rb");
   if (in == NULL) {
-    fprintf(stderr, "Error loading certificate file '%s'\n", file);
+    fprintf(stderr, "Error loading certificate file '%s'\n", cert_file);
     return 0;
   }
 
@@ -62,6 +62,81 @@ int load_trusted_cert_file(const char* file, CassSsl* ssl) {
   return 1;
 }
 
+int load_private_cert_file(const char* key_cert_file, CassSsl* ssl) {
+    CassError rc;
+    char* cert;
+    long cert_size;
+    size_t bytes_read;
+
+    FILE *in = fopen(key_cert_file, "rb");
+    if (in == NULL) {
+        fprintf(stderr, "Error loading key certificate file '%s'\n", key_cert_file);
+        return 0;
+    }
+
+    fseek(in, 0, SEEK_END);
+    cert_size = ftell(in);
+    rewind(in);
+
+    cert = (char*)malloc(cert_size);
+    bytes_read = fread(cert, 1, cert_size, in);
+    fclose(in);
+
+    if (bytes_read == (size_t) cert_size) {
+        // Load PEM-formatted certificate data and size into cert and cert_size...
+         rc = cass_ssl_set_cert_n(ssl, cert, cert_size);
+         if (rc != CASS_OK) {
+             fprintf(stderr, "Error loading SSL certificate: %s\n", cass_error_desc(rc));
+             free(cert);
+         return 0;
+         }
+    }
+    free(cert);
+    return 1;
+}
+
+int load_private_key_file(const char* key_file, const char* key_password, const size_t key_password_size, CassSsl* ssl) {
+    CassError rc;
+    size_t bytes_read;
+    char* key = NULL;
+    size_t key_size = 0;
+
+    FILE *in = fopen(key_file, "rb");
+    if (in == NULL) {
+        fprintf(stderr, "Error loading private key file '%s'\n", key_file);
+        return 0;
+    }
+
+    fseek(in, 0, SEEK_END);
+    key_size = ftell(in);
+    rewind(in);
+
+    key = (char*)malloc(key_size);
+    bytes_read = fread(key, 1, key_size, in);
+    fclose(in);
+
+    if (bytes_read == (size_t) key_size) {
+        // A password is required when the private key is encrypted.
+        // If the private key is NOT password protected use NULL.
+        // Load PEM-formatted private key data and size into key and key_size...
+        rc = cass_ssl_set_private_key_n(ssl, key, key_size, key_password, key_password_size);
+        if (rc != CASS_OK) {
+            fprintf(stderr, "Error setting private key: %s\n", cass_error_desc(rc));
+            free(key);
+            return 0;
+        }
+    }
+    free(key);
+    return 1;
+}
+
+char* file_name(const char* dir, const char* name) {
+  int len = strlen(dir)+strlen(name);
+  char* str = (char*)malloc(len+1);
+  str[len] = 0;
+  sprintf(str,"%s%s",dir,name);
+  return str;
+}
 int main(int argc, char* argv[]) {
   /* Setup and connect to cluster */
   CassFuture* connect_future = NULL;
@@ -72,16 +147,35 @@ int main(int argc, char* argv[]) {
   if (argc > 1) {
     hosts = argv[1];
   }
+  const char* dir = strcat(getenv("HOME"),"/.ssl/");
 
   cass_cluster_set_contact_points(cluster, hosts);
 
   /* Only verify the certification and not the identity */
   cass_ssl_set_verify_flags(ssl, CASS_SSL_VERIFY_PEER_CERT);
 
-  if (!load_trusted_cert_file("cert.pem", ssl)) {
+  const char* server_cert_file = file_name(dir,"cassandra.cer.pem");
+  if (!load_trusted_cert_file(server_cert_file, ssl)) {
     fprintf(stderr, "Failed to load certificate disabling peer verification\n");
     cass_ssl_set_verify_flags(ssl, CASS_SSL_VERIFY_NONE);
   }
+  free(server_cert_file);
+
+  const char* key_cert_file = file_name(dir,"driver.cer.pem");
+  if (!load_private_cert_file(key_cert_file, ssl)) {
+      fprintf(stderr, "Failed to load private certificate\n");
+      cass_ssl_set_verify_flags(ssl, CASS_SSL_VERIFY_NONE);
+  }
+  free(key_cert_file);
+
+  const char* key_password = NULL;
+  const size_t key_password_size = 0;
+  const char* key_file = file_name(dir,"driver.key.pem");
+  if (!load_private_key_file(key_file, key_password, key_password_size, ssl)) {
+      fprintf(stderr, "Failed to load private key\n");
+      cass_ssl_set_verify_flags(ssl, CASS_SSL_VERIFY_NONE);
+  }
+  free(key_file);
 
   cass_cluster_set_ssl(cluster, ssl);
 
